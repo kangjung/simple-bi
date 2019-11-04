@@ -1,2 +1,5 @@
 # simple-bi
-Simple Business Intelligence
+### Server
+Spring Boot
+### Client
+VueJS
