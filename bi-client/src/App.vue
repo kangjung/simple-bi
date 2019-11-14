@@ -1,28 +1,49 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container">
+    <md-app md-mode="reveal">
+      <md-app-toolbar class="md-primary">
+        <AppToolBar @set-visible="setVisible" :visible="menuVisible" />
+      </md-app-toolbar>
+
+      <md-app-drawer :md-active.sync="menuVisible">
+        <AppNavBar />
+      </md-app-drawer>
+
+      <md-app-content>
+        <Dashboard />
+      </md-app-content>
+    </md-app>
   </div>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
+<style lang="scss" scoped>
+  .md-reveal {
+    min-height: 100vh;
+  }
+  .md-drawer {
+    width: 230px;
+    max-width: calc(100vw - 125px);
+  }
+</style>
 
+<script>
+import AppToolBar from './components/common/AppToolBar.vue'
+import AppNavBar from './components/common/AppNavBar.vue'
+import Dashboard from './components/Dashboard.vue'
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    AppToolBar,
+    AppNavBar,
+    Dashboard,
+  },
+  data: () => ({
+    menuVisible: false
+  }),
+  methods: {
+    setVisible(visible) {
+      this.menuVisible = visible
+    }
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
