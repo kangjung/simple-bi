@@ -5,10 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>simple.bi</groupId>
     <artifactId>bi</artifactId>
+    <packaging>pom</packaging>
     <version>0.0.1-SNAPSHOT</version>
 
     <modules>
         <module>bi-server</module>
         <module>bi-client</module>
+        <module>bi-jdbc</module>
     </modules>
 </project>
