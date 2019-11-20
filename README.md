@@ -1,5 +1,8 @@
 # simple-bi
-### Server
-Spring Boot
-### Client
-VueJS
+## Server
+### TODO
+## Client
+### Development
+#### npm run serve
+### Deployment
+#### npm run build
