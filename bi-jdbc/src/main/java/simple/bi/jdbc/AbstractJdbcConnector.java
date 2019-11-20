@@ -6,7 +6,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public abstract class AbstractJdbcConnector {
-  public static final int DEFAULT_MIN_POOL_SIZE = 5;
+  public static final int DEFAULT_MIN_POOL_SIZE = 1;
 
   private BasicDataSource basicDataSource;
 
@@ -21,8 +21,6 @@ public abstract class AbstractJdbcConnector {
   }
 
   public void close() throws SQLException {
-    if (this.basicDataSource != null) {
-      this.basicDataSource.close();
-    }
+    this.basicDataSource.close();
   }
 }

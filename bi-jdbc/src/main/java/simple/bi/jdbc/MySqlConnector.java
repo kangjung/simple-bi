@@ -16,7 +16,7 @@ public class MySqlConnector extends AbstractJdbcConnector {
   protected BasicDataSource getDataSource() {
     BasicDataSource basicDataSource = new BasicDataSource();
     basicDataSource.setMinIdle(AbstractJdbcConnector.DEFAULT_MIN_POOL_SIZE);
-    basicDataSource.setMaxIdle(AbstractJdbcConnector.DEFAULT_MIN_POOL_SIZE * 2);
+    basicDataSource.setMaxIdle(AbstractJdbcConnector.DEFAULT_MIN_POOL_SIZE * 5);
     basicDataSource.setUrl(String.format("jdbc:%s://%s",
       SupportedConnections.MYSQL.getJdbcName(), this.url));
     basicDataSource.setUsername(this.userName);
