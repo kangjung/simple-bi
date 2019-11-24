@@ -1,4 +1,4 @@
-package simple.bi.server.service;
+package simple.bi.server;
 /**
  * Implement lambda as needed.
  */

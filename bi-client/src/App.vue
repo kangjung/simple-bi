@@ -10,7 +10,7 @@
       </md-app-drawer>
 
       <md-app-content>
-        <router-view></router-view>
+        <router-view />
       </md-app-content>
     </md-app>
   </div>
@@ -20,9 +20,16 @@
   .md-reveal {
     min-height: 100vh;
   }
+
   .md-drawer {
     width: auto !important;
     max-width: calc(100vw - 125px);
+  }
+
+  .md-table-head {
+    &.md-sortable {
+      text-transform: capitalize;
+    }
   }
 </style>
 

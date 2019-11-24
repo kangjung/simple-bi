@@ -1,4 +1,4 @@
-package simple.bi.server.service;
+package simple.bi.server.datasource;
 
 import java.io.IOException;
 
@@ -6,9 +6,11 @@ public interface CssImportService {
   /**
    * CSV file import.
    *
+   * @param filePath file path
    * @throws IOException In case of an error.
    */
-  void importCSV() throws IOException;
+  void importCsv(String filePath) throws IOException;
+
 
   /**
    * Detect csv separator.
