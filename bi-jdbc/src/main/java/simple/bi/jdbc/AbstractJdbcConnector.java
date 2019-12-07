@@ -6,21 +6,21 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public abstract class AbstractJdbcConnector {
-  public static final int DEFAULT_MIN_POOL_SIZE = 1;
+  protected static final int DEFAULT_MIN_POOL_SIZE = 1;
 
   private BasicDataSource basicDataSource;
 
-  public AbstractJdbcConnector() {
+  protected abstract BasicDataSource getDataSource();
+
+  protected void init() {
     this.basicDataSource = this.getDataSource();
   }
 
-  protected abstract BasicDataSource getDataSource();
+  protected void close() throws SQLException {
+    this.basicDataSource.close();
+  }
 
   public Connection getConnection() throws SQLException {
     return this.basicDataSource.getConnection();
-  }
-
-  public void close() throws SQLException {
-    this.basicDataSource.close();
   }
 }

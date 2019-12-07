@@ -2,9 +2,19 @@
   "Menu": "메뉴",
   "DashBoard": "대시보드",
   "Data Source": "데이터 소스",
+  "DataSource Name": "데이터 소스명",
   "List of DataSource": "데이터소스 목록",
   "New DataSource": "데이터소스 생성",
   "Data Connection": "데이터 커넥션",
+
+  "Import Csv Files": "Csv 파일 불러오기",
+  "Csv Files": "Csv 파일",
+  "Upload": "업로드",
+  "Enter DataSource Name.": "데이터 소스명을 입력해주세요.",
+  "Please choose a csv file.": "Csv 파일을 선택해주세요.",
+
+  "Apply": "적용",
+  "Close": "닫기",
 
   "Korean": "한국어",
   "English": "영어"

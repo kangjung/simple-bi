@@ -4,7 +4,8 @@ package simple.bi.jdbc;
  * Defining supported database.
  */
 public enum SupportedConnections {
-  MYSQL("mysql");
+  MYSQL("mysql"),
+  POSTGRESQL("postgresql");
 
   private String jdbcName;
 

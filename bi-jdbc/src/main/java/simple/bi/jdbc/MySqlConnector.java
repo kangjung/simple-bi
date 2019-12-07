@@ -11,6 +11,8 @@ public class MySqlConnector extends AbstractJdbcConnector {
     this.url = url;
     this.userName = userName;
     this.password = password;
+
+    super.init();
   }
 
   protected BasicDataSource getDataSource() {

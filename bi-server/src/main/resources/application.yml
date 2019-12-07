@@ -11,6 +11,15 @@ spring:
     password:
     sql-script-encoding: UTF-8
     initialization-mode: embedded
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 200MB
+      max-request-size: 215MB
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
 
   # h2 connected console when using
   h2:
@@ -19,3 +28,6 @@ spring:
 
 server:
   port: 8000
+
+file:
+  upload-dir: ~/simple-bi/uploads/

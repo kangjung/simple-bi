@@ -34,8 +34,8 @@
 </style>
 
 <script>
-import AppToolBar from './components/common/AppToolBar.vue'
-import AppNavBar from './components/common/AppNavBar.vue'
+import AppToolBar from '@/components/common/AppToolBar.vue'
+import AppNavBar from '@/components/common/AppNavBar.vue'
 export default {
   name: 'app',
   components: {

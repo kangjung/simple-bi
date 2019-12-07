@@ -1,13 +1,13 @@
 <template>
-  <!-- TODO(kuckjwi): It's prototype now, Change Required. -->
   <div>
     <md-table
-      v-model="users"
-      md-sort="defaultSortColumn"
-      md-sort-order="defaultSortOrder"
+      v-model="tableData"
       md-card
       md-fixed-header
+      :md-sort="defaultSortColumn"
+      :md-sort-order="defaultSortOrder"
     >
+      <!-- TODO(kuckjwi): need to check the slot-scope -->
       <md-table-toolbar>
         <h1 class="md-title">{{ $t(tableTitle) }}</h1>
       </md-table-toolbar>
@@ -34,26 +34,17 @@
         required: true
       },
       tableData: {
-        type: Object,
+        type: Array,
         required: true
       },
-      defaultSortColumn: String,
-      defaultSortOrder: String,
-    },
-    data: () => ({
-      // dummy data. (deprecated)
-      users: [
-        {
-          nmae: 'CSV test',
-          type: "File",
-          date: "2019/11/22 13:08:01",
-        },
-        {
-          nmae: 'CSV test',
-          type: "Data Source",
-          date: "2019/11/22 13:08:02",
-        },
-      ]
-    })
+      defaultSortColumn: {
+        type: String,
+        required: true,
+      },
+      defaultSortOrder: {
+        type: String,
+        required: true,
+      }
+    }
   }
 </script>
