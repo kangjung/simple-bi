@@ -10,6 +10,8 @@ import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
@@ -31,6 +33,8 @@ public class CsvImportServiceImpl implements CsvImportService {
       .append(" (");
     AtomicInteger counter = new AtomicInteger(0);
     String separator = this.detectSeparator();
+
+    Map<Integer, String> typeMap = new HashMap<Integer, String>();
 
     lines.forEach((data) -> {
       int count = counter.getAndIncrement();
@@ -57,6 +61,9 @@ public class CsvImportServiceImpl implements CsvImportService {
         builder.setLength(0);
         builder.append(String.format(temp, rowArray));
         builder.append(");");
+        for (int i = 0; i < rowArray.length; i++) {
+          typeMap.put(i, rowArray[i]);
+        }
         try (
             Connection conn = this.dataSource.getConnection();
             Statement stmt = conn.createStatement();
@@ -64,13 +71,31 @@ public class CsvImportServiceImpl implements CsvImportService {
           // table create
           stmt.execute(builder.toString());
           builder.setLength(0);
-          return;
         } catch (SQLException se) {
           throw new RuntimeException(se);
         }
       }
 
-      // TODO(kuckjwi): Insert Performance Optimization.
+      String[] rows = data.split(separator);
+
+      builder.append("INSERT INTO ")
+        .append(tableName)
+        .append(" VALUES (");
+
+      for (int i = 0; i < rows.length; i++) {
+        if (typeMap.get(i).equals(TypeRegex.INT.toString())) {
+          builder.append(rows[i]);
+        } else {
+          builder.append("'").append(rows[i]).append("'");
+        }
+        if (i + 1 != rows.length) {
+          builder.append(',');
+        }
+      }
+
+      builder.append(");\n");
+
+      // TODO(kuckjwi): add batch.
     });
   }
 
@@ -100,7 +125,7 @@ public class CsvImportServiceImpl implements CsvImportService {
   }
 
   enum TypeRegex {
-    INT(Pattern.compile("\\d"));
+    INT(Pattern.compile("^[0-9]+$"));
 
     private Pattern pattern;
 

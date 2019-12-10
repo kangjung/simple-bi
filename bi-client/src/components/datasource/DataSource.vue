@@ -1,6 +1,13 @@
 <template>
   <div>
+    <loading
+      :active.sync="isLoading"
+      color="#448aff"
+      :is-full-page="true"
+    />
+
     <Table
+      v-if="!isLoading"
       tableTitle="List of DataSource"
       :tableData="getDatasource"
       defaultSortColumn="id"
@@ -17,16 +24,8 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
-  .md-button {
-    text-transform: none;
-  }
-  .align-right {
-    text-align: right;
-  }
-</style>
-
 <script>
+import Loading from 'vue-loading-overlay';
 import Table from '@/components/common/Table.vue'
 import DialogEventBus from '@/event-bus/dialog'
 
@@ -41,11 +40,12 @@ export default {
     showDialog: false
   }),
   methods: {
-    show(dialogEventBus) {
-      DialogEventBus.$emit(dialogEventBus)
+    show(eventName) {
+      DialogEventBus.$emit(eventName)
     }
   },
   components: {
+    Loading,
     Table,
     NewDataSourceDialog,
     CsvFileUploadDialog,
@@ -60,7 +60,10 @@ export default {
   computed: {
     getDatasource() {
       return this.$store.getters.getDatasource
-    }
+    },
+    isLoading () {
+      return this.$store.getters.isLoading
+    },
   },
 }
 </script>

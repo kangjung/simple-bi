@@ -18,6 +18,8 @@
     <properties>
         <java.version>13</java.version>
         <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
+        <project.groupId>simple.bi</project.groupId>
+        <project.version>0.0.1-SNAPSHOT</project.version>
     </properties>
 
     <modules>

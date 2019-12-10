@@ -29,5 +29,6 @@ spring:
 server:
   port: 8000
 
-file:
-  upload-dir: ~/simple-bi/uploads/
+simple-bi:
+  file-upload-path: ~/simple-bi
+  secret-key: simple-bi

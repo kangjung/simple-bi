@@ -13,6 +13,20 @@
   "Enter DataSource Name.": "데이터 소스명을 입력해주세요.",
   "Please choose a csv file.": "Csv 파일을 선택해주세요.",
 
+  "List of DataConnection": "데이터커넥션 목록",
+  "DataConnection Name": "데이터커넥션 이름",
+  "Database User Name": "데이터베이스 유저명",
+  "Database Password": "데이터베이스 비밀번호",
+  "Database Url": "데이터베이스 URL",
+  "Enter DataConnection Name.": "데이터 커넥션 이름을 입력해 주세요.",
+  "Enter Your Database User Name.": "데이터베이스 유저명을 입력해 주세요.",
+  "Enter Your Database Password.": "데이터베이스 비밀번호를 입력해 주세요.",
+  "Enter Your Database Url.": "데이터베이스 URL을 입력해 주세요.",
+  "Test Connection": "연결 테스트",
+  "Connection Successful!": "연결 성공!",
+  "New DataConnection": "데이터커넥션 생성",
+
+  "Create": "생성",
   "Apply": "적용",
   "Close": "닫기",
 

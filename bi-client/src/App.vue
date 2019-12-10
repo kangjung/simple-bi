@@ -31,6 +31,10 @@
       text-transform: capitalize;
     }
   }
+
+  .align-right {
+    text-align: right;
+  }
 </style>
 
 <script>

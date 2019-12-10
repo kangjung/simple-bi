@@ -1,22 +1,37 @@
-import Vue from 'vue'
+// import Vue from 'vue'
 
 export default {
   state: {
-    datasource: [],
+    datasources: [],
+    supportedConnctions: [],
+    loading: true,
   },
   mutations: {
     mutateDatasource(state, payload) {
-      Vue.set(state, 'datasource', payload)
+      state.datasources = payload;
+      state.loading = false;
+    },
+    mutateSupportedConnection(state, payload) {
+      state.supportedConnctions = payload;
     }
   },
   actions: {
     setDatasource({ commit }, payload) {
       commit('mutateDatasource', payload)
+    },
+    setSupportedConnection({ commit }, payload) {
+      commit('mutateSupportedConnection', payload)
     }
   },
   getters: {
     getDatasource: (state) => {
-      return state.datasource
+      return state.datasources
+    },
+    getSupportedConnection: (state) => {
+      return state.supportedConnctions
+    },
+    isLoading: (state) => {
+      return state.loading
     },
   }
 }

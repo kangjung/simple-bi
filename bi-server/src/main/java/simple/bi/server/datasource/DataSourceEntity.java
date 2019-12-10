@@ -19,7 +19,7 @@ public class DataSourceEntity {
 
   private String name;
 
-  private char type;
+  private int type;
 
   private LocalDate createDate;
 }

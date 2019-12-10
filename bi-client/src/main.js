@@ -17,6 +17,7 @@ import store from '@/store'
 import 'flag-icon-css/css/flag-icon.min.css'
 import 'vue-material/dist/vue-material.min.css'
 import 'vue-material/dist/theme/default.css'
+import 'vue-loading-overlay/dist/vue-loading.css'
 
 Vue.config.productionTip = false
 

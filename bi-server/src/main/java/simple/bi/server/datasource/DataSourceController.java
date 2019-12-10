@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import simple.bi.server.csv.CsvImportService;
 import simple.bi.server.exception.BadRequestException;
+import simple.bi.server.upload.FileUploadService;
 
 import java.util.List;
 
@@ -18,6 +19,9 @@ import java.util.List;
 public class DataSourceController {
   @Autowired
   private CsvImportService csvImportService;
+
+  @Autowired
+  private FileUploadService fileUploadService;
 
   @Autowired
   private DataSourceRepository dataSourceRepository;
@@ -39,6 +43,6 @@ public class DataSourceController {
   @PostMapping("/upload")
   @ResponseBody
   public void upload(MultipartHttpServletRequest req) {
-    // TODO(kuckjwi): implementation.
+    fileUploadService.upload(req.getFile("csvFile"));
   }
 }
