@@ -3,15 +3,10 @@ package simple.bi.server.dataconnection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import simple.bi.jdbc.ConnectorFactory;
 import simple.bi.jdbc.SupportedConnections;
+import simple.bi.server.datasource.DataSourceEntity;
 import simple.bi.server.exception.BadRequestException;
 
 import javax.validation.Valid;
@@ -36,6 +31,14 @@ public class DataConnectionController {
   @ResponseBody
   public List<DataConnectionEntity> getDataConnections() {
     return this.dataConnectionRepository.findAll();
+  }
+
+  @GetMapping("{id}")
+  @ResponseBody
+  public DataConnectionEntity getDataConnection(@PathVariable("id") long id) {
+    return this.dataConnectionRepository
+      .findById(id)
+      .orElseThrow(() -> new BadRequestException("DataConnection Not Found."));
   }
 
   @GetMapping("supportedconnection")
@@ -75,5 +78,13 @@ public class DataConnectionController {
         .userName(dataConnectionDTO.getUserName())
         .password(dataConnectionDTO.getPassword()).build()
     );
+  }
+
+  @DeleteMapping("{id}")
+  @ResponseBody
+  public void deleteDataConnection(@PathVariable("id") List<Long> ids) {
+    for (Long id : ids) {
+      this.dataConnectionRepository.deleteById(id);
+    }
   }
 }

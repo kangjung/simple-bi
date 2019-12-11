@@ -7,13 +7,14 @@ export default {
   },
   mutations: {
     mutateDataconnection(state, payload) {
+      // add
       if (!Array.isArray(payload)) {
         state.dataconnections.push(payload)  
         return;
       }
       state.dataconnections = payload;
       state.loading = false;
-    }
+    },
   },
   actions: {
     addDataconnection({ commit }, payload) {
