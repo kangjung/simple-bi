@@ -83,6 +83,11 @@ export default {
     },
     connectionCheck : {}
   }),
+  props: {
+    dataConnection: {
+      type: Object,
+    }
+  },
   validations: {
     form: {
       name: {

@@ -1,7 +1,6 @@
-package simple.bi.server.csv;
+package simple.bi.server.csvimport;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 public interface CsvImportService {
   /**

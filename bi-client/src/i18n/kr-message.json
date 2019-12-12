@@ -7,6 +7,9 @@
   "New DataSource": "데이터소스 생성",
   "Data Connection": "데이터 커넥션",
 
+  "Please select a list.": "목록을 선택해 주세요.",
+  "item selected": "개의 목록 선택",
+
   "Import Csv Files": "Csv 파일 불러오기",
   "Csv Files": "Csv 파일",
   "Upload": "업로드",
@@ -24,11 +27,22 @@
   "Enter Your Database Url.": "데이터베이스 URL을 입력해 주세요.",
   "Test Connection": "연결 테스트",
   "Connection Successful!": "연결 성공!",
+
   "New DataConnection": "데이터커넥션 생성",
+  "Delete DataConnection": "데이터커넥션 삭제",
 
   "Create": "생성",
   "Apply": "적용",
   "Close": "닫기",
+
+  "id": "번호",
+  "password": "비밀번호",
+  "name": "이름",
+  "userName": "사용자명",
+  "url": "URL",
+  "createDate": "생성일자",
+
+  "Run Query": "쿼리 실행",
 
   "Korean": "한국어",
   "English": "영어"

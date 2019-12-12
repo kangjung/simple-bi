@@ -1,10 +1,18 @@
 package simple.bi.server.dataconnection;
 
-import lombok.*;
-import org.hibernate.annotations.ColumnDefault;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import java.time.LocalDate;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.Table;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name="dataconnection")
@@ -30,12 +38,12 @@ public class DataConnectionEntity {
   private String url;
 
   @Column(name = "create_date")
-  private LocalDate createDate;
+  private LocalDateTime createDate;
 
   @PrePersist
   public void onCreate() {
     if (this.createDate == null) {
-      this.createDate = LocalDate.now();
+      this.createDate = LocalDateTime.now();
     }
   }
 }

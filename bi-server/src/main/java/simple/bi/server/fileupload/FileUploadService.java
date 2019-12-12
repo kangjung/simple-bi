@@ -1,4 +1,4 @@
-package simple.bi.server.upload;
+package simple.bi.server.fileupload;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +11,6 @@ public class FileUploadService {
   private SimpleBiConfig simpleBiConfig;
 
   public void upload(MultipartFile multipartFile) {
-    // TODO(kuckjwi) multipart.
+    // TODO(kuckjwi) upload file.
   }
 }

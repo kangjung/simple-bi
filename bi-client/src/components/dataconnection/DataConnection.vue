@@ -6,33 +6,33 @@
         :is-full-page="true"
       />
 
-      <SelectedTable
-        v-if="!isLoading"
-        tableTitle="List of DataConnection"
-        :tableData="getDataconnection"
-        :itemDelete="deleteDataConnection"
-        :onSelected="onSelected"
-        defaultSortColumn="id"
-        defaultSortOrder="desc"
-      />
+    <SelectedTable
+      v-if="!isLoading"
+      tableTitle="List of DataConnection"
+      :tableData="getDataconnection"
+      :itemDelete="deleteDataConnection"
+      :onSelected="onSelected"
+      defaultSortColumn="id"
+      defaultSortOrder="desc"
+    />
 
-      <div class="align-right">
-        <md-button
-          class="md-raised md-primary"
-          @click="show('show-new-data-connection-dialog')"
-        >
-          {{ $t('New DataConnection') }}
-        </md-button>
-      </div>
-
-      <AddDataConnectionDialog />
-      <SnackBar :snackBarOptions="snackBarOptions" />
+    <div class="align-right">
+      <md-button
+        class="md-raised md-primary"
+        @click="show('show-new-data-connection-dialog')"
+      >
+        {{ $t('New DataConnection') }}
+      </md-button>
     </div>
+
+    <AddDataConnectionDialog />
+    <SnackBar :snackBarOptions="snackBarOptions" />
+  </div>
 </template>
 
 <script>
-import DialogEventBus from '@/event-bus/dialog'
 import Loading from 'vue-loading-overlay';
+import DialogEventBus from '@/event-bus/dialog'
 import SelectedTable from '@/components/common/SelectedTable.vue'
 import SnackBar from '@/components/common/SnackBar.vue'
 
@@ -83,7 +83,7 @@ export default {
     getDataconnection() {
       return this.$store.getters.getDataconnection
     },
-    isLoading () {
+    isLoading() {
       return this.$store.getters.isDataconnectionLoading
     },
   },

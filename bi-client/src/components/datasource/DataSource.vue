@@ -6,7 +6,7 @@
       :is-full-page="true"
     />
 
-    <Table
+    <SelectedTable
       v-if="!isLoading"
       tableTitle="List of DataSource"
       :tableData="getDatasource"
@@ -26,13 +26,11 @@
 
 <script>
 import Loading from 'vue-loading-overlay';
-import Table from '@/components/common/Table.vue'
+import SelectedTable from '@/components/common/SelectedTable.vue'
 import DialogEventBus from '@/event-bus/dialog'
 
 import NewDataSourceDialog from './Dialog/NewDataSourceDialog.vue'
 import CsvFileUploadDialog from './Dialog/CsvFileUploadDialog.vue'
-
-import HttpCode from '@/constants/http.code'
 
 export default {
   name: 'DataSource',
@@ -46,15 +44,12 @@ export default {
   },
   components: {
     Loading,
-    Table,
+    SelectedTable,
     NewDataSourceDialog,
     CsvFileUploadDialog,
   },
   async mounted() {
-    const { data, status } = await this.axios.get('/api/datasource')
-    if (status !== HttpCode.HTTP_OK) {
-      return;
-    }
+    const { data } = await this.axios.get('/api/datasource')
     this.$store.dispatch('setDatasource', data)
   },
   computed: {

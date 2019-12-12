@@ -1,18 +1,14 @@
 package simple.bi.server.datasource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import simple.bi.server.csv.CsvImportService;
+import simple.bi.server.csvimport.CsvImportService;
 import simple.bi.server.exception.BadRequestException;
-import simple.bi.server.upload.FileUploadService;
+import simple.bi.server.fileupload.FileUploadService;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/datasource")
@@ -42,7 +38,7 @@ public class DataSourceController {
 
   @PostMapping("/upload")
   @ResponseBody
-  public void upload(MultipartHttpServletRequest req) {
+  public void upload(MultipartHttpServletRequest req, @RequestParam Map<String, Object> paramMap) {
     fileUploadService.upload(req.getFile("csvFile"));
   }
 }
