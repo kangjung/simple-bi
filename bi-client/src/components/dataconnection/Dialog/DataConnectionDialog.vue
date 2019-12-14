@@ -5,7 +5,7 @@
       @md-closed="init"
       @md-opened="opened"
     >
-      <md-dialog-title>{{ $t('New DataConnection') }}</md-dialog-title>
+      <md-dialog-title>{{ $t(getTitle) }}</md-dialog-title>
       <md-dialog-content>
         <md-field :class="getValidationClass('name')">
           <label>{{ $t('DataConnection Name') }}</label>
@@ -44,7 +44,7 @@
         </div>
       </md-dialog-content>
       <md-dialog-actions>
-        <md-button class="md-primary" @click="onApply">{{ $t('Create') }}</md-button>
+        <md-button class="md-primary" @click="onApply">{{ $t(getTitle) }}</md-button>
         <md-button class="md-primary" @click="onClose">{{ $t('Close') }}</md-button>
       </md-dialog-actions>
     </md-dialog>
@@ -70,7 +70,7 @@ import { validationMixin } from 'vuelidate'
 import { required } from 'vuelidate/lib/validators'
 
 export default {
-  name: 'AddDataConnectionDialog',
+  name: 'DataConnectionDialog',
   mixins: [validationMixin],
   data: () => ({
     showDialog: false,
@@ -81,13 +81,9 @@ export default {
       url: '',
       dbType: 'mysql',
     },
-    connectionCheck : {}
+    connectionCheck : {},
+    id: -1,
   }),
-  props: {
-    dataConnection: {
-      type: Object,
-    }
-  },
   validations: {
     form: {
       name: {
@@ -131,13 +127,25 @@ export default {
         return 
       }
 
-      const { data } = await this.axios.post('/api/dataconnection', JSON.stringify(this.form), {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
+      const params = JSON.stringify(this.form)
 
-      this.$store.dispatch('addDataconnection', data)
+      if (this.id === -1) {
+        const { data } = await this.axios.post('/api/dataconnection', params, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+        this.$store.dispatch('setDataconnection', data)
+      } else {
+        const { data } = await this.axios.put(`/api/dataconnection/${this.id}`, params, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+        this.$store.dispatch('setDataconnection', data)
+      }
+
+      
       this.showDialog = false
     },
     onClose() {
@@ -171,14 +179,28 @@ export default {
     }
   },
   mounted() {
-    DialogEventBus.$on('show-new-data-connection-dialog', () => {
+    DialogEventBus.$on('show-data-connection-dialog', async (id) => {
       this.showDialog = true
+      this.id = id ? id : -1
+      if (this.id !== -1) {
+        const { data } = await this.axios.get(`/api/dataconnection/${id}`)
+        this.form = {
+          name: data.name,
+          userName: data.userName,
+          password: data.password,
+          url: data.url,
+          dbType: data.dbType,
+        }
+      }
     })
   },
   computed: {
     getSupportedConnection() {
       return this.$store.getters.getSupportedConnection
     },
+    getTitle() {
+      return this.id === -1 ? 'Create' : 'Modify'
+    }
   },
 }
 </script>

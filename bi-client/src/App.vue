@@ -2,11 +2,11 @@
   <div class="page-container">
     <md-app md-mode="reveal">
       <md-app-toolbar class="md-primary">
-        <AppToolBar @set-visible="setVisible" :visible="menuVisible" />
+        <app-tool-bar @set-visible="setVisible" :visible="menuVisible" />
       </md-app-toolbar>      
 
       <md-app-drawer :md-active.sync="menuVisible">
-        <AppNavBar />
+        <app-nav-bar />
       </md-app-drawer>
 
       <md-app-content>

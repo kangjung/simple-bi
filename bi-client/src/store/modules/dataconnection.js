@@ -1,3 +1,5 @@
+import Vue from 'vue'
+
 export default {
   state: {
     dataconnections: [],
@@ -5,9 +7,13 @@ export default {
   },
   mutations: {
     mutateDataconnection(state, payload) {
-      // add
       if (!Array.isArray(payload)) {
-        state.dataconnections.push(payload)  
+        const idx = state.dataconnections.findIndex(d => (d.id === payload.id))
+        if (idx !== -1) {
+          Vue.set(state.dataconnections, idx, payload)
+        } else {
+          state.dataconnections.push(payload)  
+        }
         return;
       }
       state.dataconnections = payload;
@@ -15,9 +21,6 @@ export default {
     },
   },
   actions: {
-    addDataconnection({ commit }, payload) {
-      commit('mutateDataconnection', payload)
-    },
     setDataconnection({ commit }, payload) {
       commit('mutateDataconnection', payload)
     }

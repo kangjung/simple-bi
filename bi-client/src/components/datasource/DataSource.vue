@@ -6,7 +6,7 @@
       :is-full-page="true"
     />
 
-    <SelectedTable
+    <Table
       v-if="!isLoading"
       tableTitle="List of DataSource"
       :tableData="getDatasource"
@@ -26,7 +26,7 @@
 
 <script>
 import Loading from 'vue-loading-overlay';
-import SelectedTable from '@/components/common/SelectedTable.vue'
+import Table from '@/components/common/Table.vue'
 import DialogEventBus from '@/event-bus/dialog'
 
 import NewDataSourceDialog from './Dialog/NewDataSourceDialog.vue'
@@ -44,7 +44,7 @@ export default {
   },
   components: {
     Loading,
-    SelectedTable,
+    Table,
     NewDataSourceDialog,
     CsvFileUploadDialog,
   },

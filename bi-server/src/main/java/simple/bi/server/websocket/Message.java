@@ -6,8 +6,8 @@ import lombok.Data;
 @Data
 @Builder
 public class Message {
-  private int code;
   private String message;
-  private String status;
   private String data;
+  private MessageType messageType;
+  private boolean error;
 }

@@ -3,10 +3,18 @@ package simple.bi.server.dataconnection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import simple.bi.jdbc.ConnectorFactory;
 import simple.bi.jdbc.SupportedConnections;
-import simple.bi.server.datasource.DataSourceEntity;
 import simple.bi.server.exception.BadRequestException;
 
 import javax.validation.Valid;
@@ -72,19 +80,36 @@ public class DataConnectionController {
   @ResponseBody
   public DataConnectionEntity addDataConnection(@RequestBody @Valid DataConnectionDTO dataConnectionDTO) {
     return this.dataConnectionRepository.save(
-      DataConnectionEntity.builder()
-        .name(dataConnectionDTO.getName())
-        .url(dataConnectionDTO.getUrl())
-        .userName(dataConnectionDTO.getUserName())
-        .password(dataConnectionDTO.getPassword()).build()
+        DataConnectionEntity.builder()
+            .name(dataConnectionDTO.getName())
+            .url(dataConnectionDTO.getUrl())
+            .dbType(dataConnectionDTO.getDbType())
+            .userName(dataConnectionDTO.getUserName())
+            .password(dataConnectionDTO.getPassword()).build()
     );
+  }
+
+  @PutMapping("{id}")
+  @ResponseBody
+  public DataConnectionEntity setDataConnection(@PathVariable("id") long id,
+    @RequestBody @Valid DataConnectionDTO dataConnectionDTO
+  ) {
+    DataConnectionEntity dataConnectionEntity =
+      this.dataConnectionRepository
+        .findById(id)
+        .orElseThrow(() -> new BadRequestException("DataConnection Not Found."));
+    dataConnectionEntity.setUserName(dataConnectionDTO.getUserName());
+    dataConnectionEntity.setPassword(dataConnectionDTO.getPassword());
+    dataConnectionEntity.setDbType(dataConnectionDTO.getDbType());
+    dataConnectionEntity.setName(dataConnectionDTO.getName());
+    dataConnectionEntity.setUrl(dataConnectionDTO.getUrl());
+    this.dataConnectionRepository.save(dataConnectionEntity);
+    return dataConnectionEntity;
   }
 
   @DeleteMapping("{id}")
   @ResponseBody
-  public void deleteDataConnection(@PathVariable("id") List<Long> ids) {
-    for (Long id : ids) {
-      this.dataConnectionRepository.deleteById(id);
-    }
+  public void deleteDataConnection(@PathVariable("id") long id) {
+    this.dataConnectionRepository.deleteById(id);
   }
 }

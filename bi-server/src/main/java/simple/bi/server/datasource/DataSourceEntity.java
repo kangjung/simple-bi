@@ -1,5 +1,6 @@
 package simple.bi.server.datasource;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -21,5 +22,6 @@ public class DataSourceEntity {
 
   private int type;
 
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
   private LocalDate createDate;
 }

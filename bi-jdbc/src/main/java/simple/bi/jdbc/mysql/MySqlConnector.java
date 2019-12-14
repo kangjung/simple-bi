@@ -22,6 +22,8 @@ public class MySqlConnector extends AbstractJdbcConnector {
       SupportedConnections.MYSQL.getJdbcName(), super.getUrl()));
     basicDataSource.setUsername(super.getUserName());
     basicDataSource.setPassword(super.getPassword());
+    // 30 minutes.
+    basicDataSource.setMaxConnLifetimeMillis(30 * 60000);
     return basicDataSource;
   }
 

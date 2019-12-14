@@ -28,12 +28,18 @@
   "Test Connection": "연결 테스트",
   "Connection Successful!": "연결 성공!",
 
-  "New DataConnection": "데이터커넥션 생성",
-  "Delete DataConnection": "데이터커넥션 삭제",
+  "WebSocket connection has been lost.": "웹소켓 연결을 잃었습니다.",
+  "Failed to initialize data source.": "데이터 커넥션 초기화에 실패하였습니다.",
+  "Are you sure you want to try connecting again?": "다시 연결을 시도하시겠습니까?",
+  "Retry": "재시도",
+  "Close Sql Editor": "SQL 에디터 닫기",
 
   "Create": "생성",
+  "Modify": "수정",
+  "Delete": "삭제",
   "Apply": "적용",
   "Close": "닫기",
+  "Open to SQL-Editor": "SQL Editor로 열기",
 
   "id": "번호",
   "password": "비밀번호",
@@ -41,6 +47,7 @@
   "userName": "사용자명",
   "url": "URL",
   "createDate": "생성일자",
+  "dbType": "타입",
 
   "Run Query": "쿼리 실행",
 

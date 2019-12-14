@@ -1,26 +1,31 @@
 import Stomp from 'webstomp-client'
+import WebSocketEventBus from '@/event-bus/websocket'
 
 export default class WebSocket {
-  constructor(websocketUrl, dataConnectionId) {
-    this.websocketUrl = websocketUrl
+  constructor(dataConnectionId) {
     this.dataConnectionId = dataConnectionId
-    this.connected = false
   }
 
-  connect(callback) {
-    this.stompClient = Stomp.client(this.websocketUrl)
+  connect(messageCallback) {
+    // TODO(kuckjwi): move to config.
+    this.stompClient = Stomp.client('ws://localhost:8000/simple-bi/websocket')
     this.stompClient.connect({}, () => {
-      this.stompClient.subscribe(`/sqleditor/${this.dataConnectionId}`, callback)
-      this.connected = true
+      this.stompClient.subscribe(`/sqleditor/${this.dataConnectionId}`, messageCallback)
+      WebSocketEventBus.$emit('connected', true)
+    }, () => {
+      WebSocketEventBus.$emit('connected', false)
     })
   }
 
   disconnect() {
     if (this.stompClient) {
       this.stompClient.disconnect()
-      this.stompClient = null;
+      this.stompClient = null
     }
-    this.connected = false
+    WebSocketEventBus.$emit('connected', false)
+  }
+
+  subscribe() {
   }
 
   isConnected() {

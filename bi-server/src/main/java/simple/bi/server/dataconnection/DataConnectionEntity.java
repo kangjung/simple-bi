@@ -1,5 +1,6 @@
 package simple.bi.server.dataconnection;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -31,13 +32,18 @@ public class DataConnectionEntity {
   @Column(name = "user_name", nullable = false)
   private String userName;
 
+  // TODO(kuckjwi): encryption
   @Column(name = "password", nullable = false)
   private String password;
 
   @Column(name = "url", nullable = false)
   private String url;
 
+  @Column(name = "db_type")
+  private String dbType;
+
   @Column(name = "create_date")
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
   private LocalDateTime createDate;
 
   @PrePersist
