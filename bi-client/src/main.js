@@ -12,6 +12,7 @@ import SqlEditor from '@/components/sqleditor/SqlEditor.vue'
 import kr from '@/i18n/kr-message'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import underscore from 'vue-underscore'
 
 import store from '@/store'
 
@@ -26,6 +27,7 @@ Vue.use(VueI18n)
 Vue.use(VueRouter)
 Vue.use(VueMaterial)
 Vue.use(VueAxios, axios)
+Vue.use(underscore)
 
 const i18n = new VueI18n({
   locale: 'kr', // set locale

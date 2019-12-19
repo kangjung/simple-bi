@@ -1,6 +1,7 @@
 import Stomp from 'webstomp-client'
 import WebSocketEventBus from '@/event-bus/websocket'
 
+// TODO(kuckjwi): Change to factory method pattern.
 export default class WebSocket {
   constructor(dataConnectionId) {
     this.dataConnectionId = dataConnectionId
@@ -25,10 +26,11 @@ export default class WebSocket {
     WebSocketEventBus.$emit('connected', false)
   }
 
-  subscribe() {
+  subscribe(url, messageCallback) {
+    this.stompClient.subscribe(url, messageCallback)
   }
 
-  isConnected() {
-    return this.connected
+  send(url, message) {
+    this.stompClient.send(url, JSON.stringify(message), {})
   }
 }

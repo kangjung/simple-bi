@@ -1,8 +1,7 @@
 <template>
   <grid
-    :data="gridProps.data"
-    :columns="gridProps.columns"
-    :options="gridProps.options"
+    :data="getGridOption.data"
+    :columns="getGridOption.columns"
     theme="clean"
   />
 </template>
@@ -13,32 +12,22 @@
 
   export default {
     name: 'TableVisualization',
+    props: {
+      result: {
+        type: Array,
+        required: true,
+      }
+    },
     components: {
       Grid,
     },
-    created() {
-      this.gridProps = {
-        data: [ // for rowData prop
-          {
-            name: 'Beautiful Lies',
-            artist: 'Birdy'
-          },
-          {
-            name: 'X',
-            artist: 'Ed Sheeran'
-          }
-        ],
-        columns: [ // for columnData prop
-          {
-            header: 'Name',
-            name: 'name',
-          },
-          {
-            header: 'Artist',
-            name: 'artist'
-          }
-        ]
+    computed: {
+      getGridOption() {
+        return {
+          columns: Object.keys(this.result[0]).map(key => ({ header: key, name: key })),
+          data: this.result
+        }
       }
-    }
+    },
   }
 </script>

@@ -32,3 +32,4 @@ server:
 simple-bi:
   file-upload-path: ~/simple-bi
   secret-key: simple-bi
+  defaultResultLimit: 100

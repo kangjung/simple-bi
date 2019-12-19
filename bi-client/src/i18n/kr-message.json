@@ -50,6 +50,8 @@
   "dbType": "타입",
 
   "Run Query": "쿼리 실행",
+  "Stop Query": "쿼리 중지",
+  "Create Chart": "차트 생성",
 
   "Korean": "한국어",
   "English": "영어"

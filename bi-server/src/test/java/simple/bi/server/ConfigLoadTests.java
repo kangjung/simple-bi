@@ -17,5 +17,6 @@ public class ConfigLoadTests {
   void loadConfigTest() throws IOException {
     assertThat(simpleBiConfig.getFileUploadPath()).isNotNull();
     assertThat(simpleBiConfig.getSecretKey()).isNotNull();
+    assertThat(simpleBiConfig.getDefaultResultLimit()).isNotNull();
   }
 }

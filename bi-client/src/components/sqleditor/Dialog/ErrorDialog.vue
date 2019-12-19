@@ -1,36 +1,28 @@
 <template>
-  <md-dialog-confirm
+  <md-dialog-alert
     :md-active.sync="showDialog"
     :md-title="$t(title)"
     :md-content="$t(content)"
-    :md-confirm-text="$t('Retry')"
-    :md-cancel-text="$t('Close Sql Editor')"
-    @md-cancel="onCancel"
+    :md-confirm-text="$t('Close')"
     @md-confirm="onConfirm" />
 </template>
 
 <script>
   import DialogEventBus from '@/event-bus/dialog'
   export default {
-    name: 'WebSocketRetryDialog',
-    props: {
-      onConfirm: {
-        type: Function,
-        required: true,
-      },
-    },
+    name: 'ErrorDialog',
     data: () => ({
       showDialog: false,
       title: '',
       content: '',
     }),
     methods: {
-      onCancel() {
-        window.close()
+      onConfirm() {
+        this.showDialog = false
       },
     },
     mounted() {
-      DialogEventBus.$on('show-retry-dialog', (message) => {
+      DialogEventBus.$on('show-error-dialog', (message) => {
         this.showDialog = true
         this.title = message.title
         this.content = message.content

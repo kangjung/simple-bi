@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import simple.bi.jdbc.ConnectorFactory;
@@ -65,7 +64,7 @@ public class DataConnectionController {
         dataConnectionDTO.getUserName(),
         dataConnectionDTO.getPassword(),
         dataConnectionDTO.getDbType()
-      ).testConnection();
+      ).testConnection(true);
       checkMap.put("connected", true);
       checkMap.put("message", "Connection Successful!");
     } catch (Exception e) {

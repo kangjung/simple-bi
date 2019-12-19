@@ -17,4 +17,8 @@ public class SimpleBiConfig {
   @Getter
   @Setter
   private String secretKey;
+
+  @Getter
+  @Setter
+  private int defaultResultLimit;
 }
