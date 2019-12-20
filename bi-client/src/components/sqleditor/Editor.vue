@@ -15,7 +15,7 @@
     <md-button v-show="isRunningQuery" class="md-raised md-accent" @click="stopQuery()">
       {{ $t('Stop Query') }}
     </md-button>
-    <md-button class="md-raised md-primary">
+    <md-button class="md-raised md-primary" @click="moveChart()">
       {{ $t('Create Chart') }}
     </md-button>
   </div>
@@ -62,6 +62,9 @@
       },
       stopQuery() {
         // TODO(kuckjwi): stop query.
+      },
+      moveChart() {
+        this.$router.push('/charteditor')
       }
     },
     computed: {

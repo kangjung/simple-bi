@@ -38,8 +38,18 @@
   "Modify": "수정",
   "Delete": "삭제",
   "Apply": "적용",
+  "Save": "저장",
   "Close": "닫기",
   "Open to SQL-Editor": "SQL Editor로 열기",
+
+  "Create your first Chart": "차트를 생성해 보세요!",
+  "Run": "실행",
+  "Add to Dashboard": "대시보드에 추가",
+  "Chart Options": "차트 옵션",
+  "X-Axis": "X축",
+  "Y-Axis": "Y축",
+  "DataView": "데이터뷰",
+  "Download": "다운로드",
 
   "id": "번호",
   "password": "비밀번호",

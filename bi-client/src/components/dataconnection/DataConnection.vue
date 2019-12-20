@@ -17,7 +17,7 @@
 
     <div class="align-right">
       <md-button
-        class="md-raised md-primary"
+        class="md-raised md-primary create"
         @click="show('show-data-connection-dialog')"
       >
         {{ $t('Create') }}
@@ -28,6 +28,12 @@
     <snack-bar :snackBarOptions="snackBarOptions" />
   </div>
 </template>
+
+<style lang="scss" scoped>
+  .create {
+    margin-right: 15px;
+  }
+</style>
 
 <script>
   import Loading from 'vue-loading-overlay';

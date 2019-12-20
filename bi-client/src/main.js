@@ -8,6 +8,7 @@ import Dashboard from '@/components/dashboard/Dashboard.vue'
 import DataSource from '@/components/datasource/DataSource.vue'
 import DataConnection from '@/components/dataconnection/DataConnection.vue'
 import SqlEditor from '@/components/sqleditor/SqlEditor.vue'
+import ChartEditor from '@/components/charteditor/ChartEditor.vue'
 
 import kr from '@/i18n/kr-message'
 import axios from 'axios'
@@ -42,6 +43,7 @@ const routes = [
   { path: '/datasource', component: DataSource },
   { path: '/dataconnection', component: DataConnection },
   { path: '/sqleditor/:dataconnectionId', component: SqlEditor },
+  { path: '/charteditor', component: ChartEditor },
 ]
 
 const router = new VueRouter({

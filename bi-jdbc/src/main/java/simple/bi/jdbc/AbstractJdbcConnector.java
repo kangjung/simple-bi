@@ -2,11 +2,7 @@ package simple.bi.jdbc;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -40,7 +36,29 @@ public abstract class AbstractJdbcConnector {
 
   public abstract void testConnection(boolean close) throws SQLException;
 
-  public abstract Map<String, List<Map<String, String>>> getTableMap() throws SQLException;
+  public Map<String, List<Map<String, String>>> getTableMap() throws SQLException {
+    Map<String, List<Map<String, String>>> tableMap = new HashMap<>();
+    try (
+      Connection conn = this.getConnection();
+      ResultSet tableRs = conn.getMetaData()
+        .getTables(null, null, "%", new String[]{ "TABLE" })) {
+      while (tableRs.next()) {
+        String tableName = tableRs.getString("TABLE_NAME");
+        List<Map<String, String>> columnList = new ArrayList<>();
+        try (ResultSet columnsRs = conn.getMetaData()
+                .getColumns(null, null, tableName, null)) {
+          while (columnsRs.next()) {
+            Map<String, String> columnMap = new HashMap<>();
+            columnMap.put("columnType", JDBCType.valueOf(columnsRs.getInt("DATA_TYPE")).toString());
+            columnMap.put("columnName", columnsRs.getString("COLUMN_NAME").toUpperCase());
+            columnList.add(columnMap);
+          }
+        }
+        tableMap.put(tableName, columnList);
+      }
+    }
+    return tableMap;
+  }
 
   protected void close() throws SQLException {
     this.basicDataSource.close();

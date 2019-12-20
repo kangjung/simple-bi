@@ -20,6 +20,7 @@ import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/dataconnection")
@@ -37,7 +38,12 @@ public class DataConnectionController {
   @GetMapping
   @ResponseBody
   public List<DataConnectionEntity> getDataConnections() {
-    return this.dataConnectionRepository.findAll();
+    List<DataConnectionEntity> connections = this.dataConnectionRepository.findAll();
+    return connections.stream().map(connection -> {
+      // masking.
+      connection.setPassword("********");
+      return connection;
+    }).collect(Collectors.toList());
   }
 
   @GetMapping("{id}")
@@ -80,11 +86,11 @@ public class DataConnectionController {
   public DataConnectionEntity addDataConnection(@RequestBody @Valid DataConnectionDTO dataConnectionDTO) {
     return this.dataConnectionRepository.save(
         DataConnectionEntity.builder()
-            .name(dataConnectionDTO.getName())
-            .url(dataConnectionDTO.getUrl())
-            .dbType(dataConnectionDTO.getDbType())
-            .userName(dataConnectionDTO.getUserName())
-            .password(dataConnectionDTO.getPassword()).build()
+          .name(dataConnectionDTO.getName())
+          .url(dataConnectionDTO.getUrl())
+          .dbType(dataConnectionDTO.getDbType())
+          .userName(dataConnectionDTO.getUserName())
+          .password(dataConnectionDTO.getPassword()).build()
     );
   }
 
