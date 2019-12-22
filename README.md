@@ -10,3 +10,6 @@ npm run serve
 ~~~
 mvn clean package -DskipTests
 ~~~
+
+### Collaborator
+[mswjst](https://github.com/mswjst)
